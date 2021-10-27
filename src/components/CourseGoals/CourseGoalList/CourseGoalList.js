@@ -3,16 +3,19 @@ import React from 'react';
 import CourseGoalItem from '../CourseGoalItem/CourseGoalItem';
 import './CourseGoalList.css';
 
+// компонент который будет рендерить Goal'ы 
 const CourseGoalList = props => {
   return (
     <ul className="goal-list">
       {props.items.map(goal => (
         <CourseGoalItem
-          key={goal.id}
-          id={goal.id}
-          onDelete={props.onDeleteItem}
+        // goal.id - это рандомно сгенерированный id
+          key={goal.id} // чтобы react работал стабильно
+          id={goal.id} // TODO: пригодится для удаления элемента
+          onDelete={props.onDeleteItem} // функция которая будет удалять(фильтровать) значение
         >
-          {goal.text}
+          {/* значения input'ов которые сохранены в DAT'е */}
+          {goal.text} 
         </CourseGoalItem>
       ))}
     </ul>

@@ -5,19 +5,25 @@ import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
 import './App.css';
 
 const App = () => {
+  // DATA. т.е в ней будут сохраняться все Goal'ы
   const [courseGoals, setCourseGoals] = useState([
     { text: 'Do all exercises!', id: 'g1' },
     { text: 'Finish the course!', id: 'g2' }
   ]);
 
-  const addGoalHandler = enteredText => {
-    setCourseGoals(prevGoals => {
+
+  // TODO: функция, которая передается как пропс и получает данные input'a
+  const addGoalHandler = (enteredText) => { // enteredText - значение которое будет приходить с комп-ы CourseInput
+    setCourseGoals(  (prevGoals) => {
+      // TODO: сохраняем старые значения и добавляем новое полученное значение
       const updatedGoals = [...prevGoals];
+      // unshift будет добавлять в начало массива TODO: id даем для key'a
       updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
       return updatedGoals;
     });
   };
 
+  // функция для удаления Goal'ов
   const deleteItemHandler = goalId => {
     setCourseGoals(prevGoals => {
       const updatedGoals = prevGoals.filter(goal => goal.id !== goalId);
@@ -25,30 +31,29 @@ const App = () => {
     });
   };
 
+  // TODO: на случай если goal'ов не будет в courseGoals
   let content = (
     <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
   );
 
+  // проверка есть ли Goal'ы в DATA(courseGoals)
   if (courseGoals.length > 0) {
+    // если есть будут рендериться Goal'ы которые есть в DAT'e
     content = (
       <CourseGoalList items={courseGoals} onDeleteItem={deleteItemHandler} />
     );
-  }
+  } // TODO: если нет см 36 строку
 
   return (
     <div>
       <section id="goal-form">
+        {/*TODO: функция переданная как пропс чтобы добавлять новые значения */}
         <CourseInput onAddGoal={addGoalHandler} />
       </section>
       <section id="goals">
-        {content}
-        {/* {courseGoals.length > 0 && (
-          <CourseGoalList
-            items={courseGoals}
-            onDeleteItem={deleteItemHandler}
-          />
-        ) // <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
-        } */}
+        {/* TODO: см 34 - 44 */}
+        {content} 
+
       </section>
     </div>
   );
