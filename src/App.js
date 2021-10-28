@@ -12,8 +12,8 @@ const App = () => {
   ]);
 
 
-  // TODO: функция, которая передается как пропс и получает данные input'a
-  const addGoalHandler = (enteredText) => { // enteredText - значение которое будет приходить с комп-ы CourseInput
+  // TODO: функция, которая передается как пропс и получает значение input'a
+  const addGoalHandler = (enteredText) => { // enteredText - значение input'a
     setCourseGoals(  (prevGoals) => {
       // TODO: сохраняем старые значения и добавляем новое полученное значение
       const updatedGoals = [...prevGoals];
@@ -24,8 +24,9 @@ const App = () => {
   };
 
   // функция для удаления Goal'ов
-  const deleteItemHandler = goalId => {
+  const deleteItemHandler = (goalId) => {
     setCourseGoals(prevGoals => {
+      // фильтрация по id Goall'a
       const updatedGoals = prevGoals.filter(goal => goal.id !== goalId);
       return updatedGoals;
     });

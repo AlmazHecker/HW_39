@@ -7,7 +7,7 @@ const CourseGoalItem = props => {
 
   // функция для удаления значения input'а
   const deleteHandler = () => {
-    // при нажатии удаляет Goal у которого id равен тому который мы нажали  
+    // при нажатии удаляет Goal у которого id равен тому который мы нажали
     props.onDelete(props.id);
   };
 
