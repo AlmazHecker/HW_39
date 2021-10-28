@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// TODO: модульный css 
 import styles from './CourseInput.module.css'
 
 import Button from '../../UI/Button/Button';
@@ -8,6 +9,7 @@ const CourseInput = props => {
   
   // состояние чтобы сохранять значение input'a
   const [enteredValue, setEnteredValue] = useState('');
+  // для проверки значения input'a
   const [isValid, SetIsValid] = useState(true)
 
   // функция которая будет записывать в enteredValue значение input'a 
@@ -28,14 +30,16 @@ const CourseInput = props => {
     }
     // TODO: добавляем в DAT'у значение input'a
     props.onAddGoal(enteredValue);
+    setEnteredValue('')
   };
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className={`${styles['form-control']}  ${!isValid && styles.invalid}`}>
+      {/* styles.invalid будет срабатывать если попытаться отправить пустое значение input'a. см 27  */}
+      <div className={`${styles['form-control']} ${!isValid && styles.invalid}`}>
         <label>Course Goal</label>
-          {/* onChange={GoalInputChangeHandler} TODO: см. 13 строку */}
-        <input type="text" onChange={goalInputChangeHandler} />
+          {/* onChange={GoalInputChangeHandler} TODO: см. 14 строку */}
+        <input type="text" onChange={goalInputChangeHandler} value={enteredValue}/>
       </div>
       <Button type="submit">Add Goal</Button>
     </form>
